@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Tecsinapse - Lucas</title>
+</head>
+
+<body>
+
+    <script>
+
+        let quantidadeTotalItem1 = 0;
+        let quantidadeTotalItem2 = 0;
+        let quantidadeTotalItem3 = 0;
+        let quantidadeTotalItem4 = 0;
+        let quantidadeTotalItem5 = 0;
+        let valorTotalItem1 = 0;
+        let valorTotalItem2 = 0;
+        let valorTotalItem3 = 0;
+        let valorTotalItem4 = 0;
+        let valorTotalItem5 = 0;
+        let itemmaior;
+
+        const api_url = 'https://eventsync.portaltecsinapse.com.br/public/recrutamento/input?email=lucasgsamudio@gmail.com';
+
+        async function getItems() {
+            const response = await fetch(api_url);
+            const dados = await response.json();
+
+            for (let i in dados) {
+                let { item: item, quantidade: quantidade, total: valor, dia: data } = dados[i];
+                data = new Date(formatarData(data));
+
+                let mes = (data.getMonth() + 1);
+                let ano = data.getFullYear();
+
+
+                if (mes === 12 && ano === 2018) {
+
+                    switch (item) {
+                        case "item 1":
+                            quantidadeTotalItem1 += quantidade;
+                            valorTotalItem1 += valor;
+                            valorTotalItem1 = parseFloat(valorTotalItem1.toFixed(2));
+                            break;
+                        case "item 2":
+                            quantidadeTotalItem2 += quantidade;
+                            valorTotalItem2 += valor;
+                            valorTotalItem2 = parseFloat(valorTotalItem2.toFixed(2));
+                            break;
+                        case "item 3":
+                            quantidadeTotalItem3 += quantidade;
+                            valorTotalItem3 += valor;
+                            valorTotalItem3 = parseFloat(valorTotalItem2.toFixed(2));
+                            break;
+                        case "item 4":
+                            quantidadeTotalItem4 += quantidade;
+                            valorTotalItem4 += valor;
+                            valorTotalItem4 = parseFloat(valorTotalItem4.toFixed(2));
+                            break;
+                        case "item 5":
+                            quantidadeTotalItem5 += quantidade;
+                            valorTotalItem5 += valor;
+                            valorTotalItem5 = parseFloat(valorTotalItem5.toFixed(2));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            if ((quantidadeTotalItem1 > quantidadeTotalItem2) && (quantidadeTotalItem1 > quantidadeTotalItem3) &&
+                (quantidadeTotalItem1 > quantidadeTotalItem4) && (quantidadeTotalItem1 > quantidadeTotalItem5)) {
+                itemmaior = "item 1";
+                console.log(`O ${itemmaior} é o maior com a quantidade total de ${quantidadeTotalItem1} e o total vendido de R$ ${valorTotalItem1}`);
+            }
+
+            if ((quantidadeTotalItem2 > quantidadeTotalItem1) && (quantidadeTotalItem2 > quantidadeTotalItem3) &&
+                (quantidadeTotalItem2 > quantidadeTotalItem4) && (quantidadeTotalItem2 > quantidadeTotalItem5)) {
+                itemmaior = "item 2"
+                console.log(`O ${itemmaior} é o maior com a quantidade total de ${quantidadeTotalItem2} e o total vendido de R$ ${valorTotalItem2}`);
+            }
+
+            if ((quantidadeTotalItem3 > quantidadeTotalItem1) && (quantidadeTotalItem3 > quantidadeTotalItem2) &&
+                (quantidadeTotalItem3 > quantidadeTotalItem4) && (quantidadeTotalItem3 > quantidadeTotalItem5)) {
+                itemmaior = "item 3";
+                console.log(`O ${itemmaior} é o maior com a quantidade total de ${quantidadeTotalItem3} e o total vendido de R$ ${valorTotalItem3}`);
+            }
+
+            if ((quantidadeTotalItem4 > quantidadeTotalItem1) && (quantidadeTotalItem4 > quantidadeTotalItem2) &&
+                (quantidadeTotalItem4 > quantidadeTotalItem3) && (quantidadeTotalItem4 > quantidadeTotalItem5)) {
+                itemmaior = "item 4";
+                console.log(`O ${itemmaior} é o maior com a quantidade total de ${quantidadeTotalItem4} e o total vendido de R$ ${valorTotalItem4}`);
+            }
+
+            if ((quantidadeTotalItem5 > quantidadeTotalItem1) && (quantidadeTotalItem5 > quantidadeTotalItem2) &&
+                (quantidadeTotalItem5 > quantidadeTotalItem3) && (quantidadeTotalItem5 > quantidadeTotalItem4)) {
+                itemmaior = "item 5";
+                console.log(`O ${itemmaior} é o maior com a quantidade total de ${quantidadeTotalItem5} e o total vendido de R$ ${valorTotalItem5}`);
+            }
+
+            console.log("Total");
+            console.log(`Item 1 - Quantidade Total ${quantidadeTotalItem1} Valor Total R$ ${valorTotalItem1}`);
+            console.log(`Item 2 - Quantidade Total ${quantidadeTotalItem2} Valor Total R$ ${valorTotalItem2}`);
+            console.log(`Item 3 - Quantidade Total ${quantidadeTotalItem3} Valor Total R$ ${valorTotalItem3}`);
+            console.log(`Item 4 - Quantidade Total ${quantidadeTotalItem4} Valor Total R$ ${valorTotalItem4}`);
+            console.log(`Item 5 - Quantidade Total ${quantidadeTotalItem5} Valor Total R$ ${valorTotalItem5}`);
+        }
+
+        function formatarData(numero) { return numeroFormatado = numero.split('/').reverse().join('/'); }
+
+        getItems();
+
+    </script>
+</body>
+
+</html>
