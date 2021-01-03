@@ -3,7 +3,7 @@ const axios = require ('axios');
 const options = {
   method: 'POST',
   url: 'https://eventsync.portaltecsinapse.com.br/public/recrutamento/finalizar',
-  params: {email: 'lucasgsamudio@gmail.com'},
+  params: {email: ''},
   headers: {
     'Content-Type': 'text/plain'
   },
